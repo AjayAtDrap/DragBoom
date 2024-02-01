@@ -16,7 +16,7 @@ const SignupPage = () => {
   const [data, setData] = useState({});
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(true);
-    setData(values);
+    setData("values is", values);
   };
   console.log("data", data);
 
