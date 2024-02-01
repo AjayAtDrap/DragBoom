@@ -69,7 +69,7 @@ const LoginPage = () => {
 
               <div className="mt-3">
                 <p>
-                  Already a User? <Link to={"/signup"}>Signup</Link>
+                  Need an Account? <Link to={"/signup"}>Signup</Link>
                 </p>
               </div>
             </Form>
