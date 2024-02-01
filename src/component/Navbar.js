@@ -1,13 +1,13 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
-    <nav className="navbar bg-dark text-white">
+    <div className="navbar bg-dark text-white">
       <ul className="d-flex list-unstyled  ">
         <li className="mx-2">
-          <a className="text-decoration-none" href="/page">
+          <Link className="text-decoration-none" to="/page">
             Page
-          </a>
+          </Link>
         </li>
         <li className="mx-2">
           <a className="text-decoration-none" href="/Login">
@@ -20,7 +20,8 @@ const Navbar = () => {
           </a>
         </li>
       </ul>
-    </nav>
+      <div></div>
+    </div>
   );
 };
 

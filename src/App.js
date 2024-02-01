@@ -3,7 +3,6 @@ import Signup from "./component/Signup";
 import Grapes from "./component/Grapes";
 import Login from "./component/Login";
 import Page from "./component/Page";
-import Navbar from "./component/Navbar";
 
 const appRouter = createBrowserRouter([
   {
@@ -28,7 +27,6 @@ const appRouter = createBrowserRouter([
 function App() {
   return (
     <>
-      <Navbar />
       <RouterProvider router={appRouter} />;
     </>
   );

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import grapesjs from "grapesjs";
 import "grapesjs/dist/css/grapes.min.css";
 import "../styles/main.css";
+import Navbar from "./Navbar";
 
 const GrapesEditor = () => {
   const projectID = "1";
@@ -304,32 +305,35 @@ const GrapesEditor = () => {
   }, []);
 
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-12 panel__top">
-          <div className="panel__basic-actions"></div>
-          <div className="fw-bold text-warning">DragBoom</div>
-          <div className="panel__switcher"></div>
-        </div>
-      </div>
-
-      <div className="row no-gutters">
-        <div className="bg-dark vh-100 col-md-2 d-none d-sm-block p-0">
-          <div id="blocks"></div>
-        </div>
-
-        <div className="editor-row col-md-10 p-0">
-          <div id="gjs" className="editor-canvas container-fluid">
-            <h1>Welcome to our Editor</h1>
-          </div>
-          <div className="panel__right vh-100 d-none d-sm-block">
-            <div className="layers-container"></div>
-            <div className="styles-container"></div>
-            <div className="traits-container"></div>
+    <>
+      <Navbar />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-12 panel__top">
+            <div className="panel__basic-actions"></div>
+            <div className="fw-bold text-warning">DragBoom</div>
+            <div className="panel__switcher"></div>
           </div>
         </div>
+
+        <div className="row no-gutters">
+          <div className="bg-dark vh-100 col-md-2 d-none d-sm-block p-0">
+            <div id="blocks"></div>
+          </div>
+
+          <div className="editor-row col-md-10 p-0">
+            <div id="gjs" className="editor-canvas container-fluid">
+              <h1>Welcome to our Editor</h1>
+            </div>
+            <div className="panel__right vh-100 d-none d-sm-block">
+              <div className="layers-container"></div>
+              <div className="styles-container"></div>
+              <div className="traits-container"></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
