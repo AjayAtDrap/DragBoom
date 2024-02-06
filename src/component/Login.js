@@ -3,6 +3,8 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -12,9 +14,27 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LoginPage = () => {
-  const handleSubmit = (values, { setSubmitting }) => {
+  const nav = useNavigate();
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     console.log(values);
-    setSubmitting(true);
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/user/login",
+        values,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Logged in successfully", response.data);
+
+      resetForm();
+      nav("/page");
+    } catch (error) {
+      console.error("Error posting data", error);
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -24,12 +44,12 @@ const LoginPage = () => {
         <div className="w-auto">
           <h2 className=" text-center">Login</h2>
           <Formik
-            initialValues={{ name: "", email: "", password: "", dob: "" }}
+            initialValues={{ email: "", password: "" }}
             validationSchema={LoginSchema}
             onSubmit={handleSubmit}
           >
             {({ isSubmitting }) => (
-              <Form>
+              <Form className="d-flex flex-column justify-content-center">
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
                   <Field

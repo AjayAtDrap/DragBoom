@@ -3,6 +3,7 @@ import Signup from "./component/Signup";
 import Grapes from "./component/Grapes";
 import Login from "./component/Login";
 import Page from "./component/Page";
+import CreateProject from "./component/CreateProject";
 
 const appRouter = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
+  },
+  {
+    path: "/createp",
+    element: <CreateProject />,
   },
 ]);
 

@@ -3,9 +3,11 @@ import grapesjs from "grapesjs";
 import "grapesjs/dist/css/grapes.min.css";
 import "../styles/main.css";
 import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom";
 
 const GrapesEditor = () => {
   const projectID = "1";
+  const nav = useNavigate();
   const projectEndpoint = `http://localhost:3001/api/projects/${projectID}`;
 
   useEffect(() => {
@@ -303,6 +305,9 @@ const GrapesEditor = () => {
       },
     });
   }, []);
+  const handleLogout = () => {
+    nav("/login");
+  };
 
   return (
     <>
@@ -312,6 +317,9 @@ const GrapesEditor = () => {
           <div className="col-md-12 panel__top">
             <div className="panel__basic-actions"></div>
             <div className="fw-bold text-warning">DragBoom</div>
+            <button onClick={handleLogout} className="btn ">
+              <i class="bi bi-box-arrow-right"></i>
+            </button>
             <div className="panel__switcher"></div>
           </div>
         </div>

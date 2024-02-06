@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
@@ -17,6 +18,7 @@ const SignupSchema = Yup.object().shape({
 const SignupPage = () => {
   const [formData, setData] = useState({});
   // const [error, setError] = useState(null);
+  const nav = useNavigate();
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     setSubmitting(true);
@@ -34,11 +36,11 @@ const SignupPage = () => {
         }
       );
       console.log("Data posted successfully", response.data);
+      nav("/page");
 
       resetForm();
     } catch (error) {
       console.error("Error posting data", error);
-      // Handle error if needed
       setSubmitting(false);
     }
   };
@@ -85,7 +87,7 @@ const SignupPage = () => {
             onSubmit={handleSubmit}
           >
             {({ isSubmitting }) => (
-              <Form>
+              <Form className="d-flex flex-column justify-content-center">
                 <div className="form-group">
                   <label className="mt-2" htmlFor="name">
                     Name
@@ -179,7 +181,7 @@ const SignupPage = () => {
                   {isSubmitting ? "Signing up..." : "Sign Up"}
                 </button>
 
-                <div className="mt-2">
+                <div className="mt-2 ">
                   <p>
                     Already a User? <Link to={"/login"}>Login</Link>
                   </p>
