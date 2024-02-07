@@ -1,15 +1,32 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CreateProject = () => {
   const [data, setData] = useState("");
+  // const parseData = JSON.parse(data);
+  const nav = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("submitting");
-    // try {
-    //   axios.post("http://localhost:3001/page/addPage");
-    // } catch (err) {}
+    console.log("data", data);
+    console.log("tyepe of data", typeof data);
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/page/addPage",
+        { name: data },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Data Sent Successfully", response.data);
+      nav("/");
+    } catch (err) {
+      console.error("Error posting data", err);
+    }
   };
   const handleChange = (e) => {
     // console.log(e.target.value);
@@ -23,7 +40,7 @@ const CreateProject = () => {
       <div className="d-flex flex-column">
         <form>
           <label className="" htmlFor="name">
-            Name
+            Name your project
           </label>
           <input
             onChange={handleChange}

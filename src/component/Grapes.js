@@ -305,9 +305,6 @@ const GrapesEditor = () => {
       },
     });
   }, []);
-  const handleLogout = () => {
-    nav("/login");
-  };
 
   return (
     <>
@@ -317,9 +314,9 @@ const GrapesEditor = () => {
           <div className="col-md-12 panel__top">
             <div className="panel__basic-actions"></div>
             <div className="fw-bold text-warning">DragBoom</div>
-            <button onClick={handleLogout} className="btn ">
-              <i class="bi bi-box-arrow-right"></i>
-            </button>
+
+            <i class="bi bi-box-arrow-right"></i>
+
             <div className="panel__switcher"></div>
           </div>
         </div>
@@ -331,7 +328,7 @@ const GrapesEditor = () => {
 
           <div className="editor-row col-md-10 p-0">
             <div id="gjs" className="editor-canvas container-fluid">
-              <h1>Welcome to our Editor</h1>
+              <h1>Boom Guys, Welcome to our Editor </h1>
             </div>
             <div className="panel__right vh-100 d-none d-sm-block">
               <div className="layers-container"></div>

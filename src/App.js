@@ -4,6 +4,8 @@ import Grapes from "./component/Grapes";
 import Login from "./component/Login";
 import Page from "./component/Page";
 import CreateProject from "./component/CreateProject";
+import { Provider } from "react-redux";
+import appStore from "./component/redux/appStore";
 
 const appRouter = createBrowserRouter([
   {
@@ -32,7 +34,9 @@ const appRouter = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={appRouter} />;
+      <Provider store={appStore}>
+        <RouterProvider router={appRouter} />;
+      </Provider>
     </>
   );
 }

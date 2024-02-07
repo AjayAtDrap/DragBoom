@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "./redux/userSlice";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -14,9 +16,9 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
   const nav = useNavigate();
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    console.log(values);
     try {
       const response = await axios.post(
         "http://localhost:3001/user/login",
@@ -28,6 +30,9 @@ const LoginPage = () => {
         }
       );
       console.log("Logged in successfully", response.data);
+
+      dispatch(addUser(response.data));
+      localStorage.setItem("userName", response.data?.userData?.name);
 
       resetForm();
       nav("/page");
